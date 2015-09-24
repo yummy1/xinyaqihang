@@ -9,11 +9,18 @@
 /* Begin PBXBuildFile section */
 		CC6CE2BC1BB2A8B200E4BB21 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2BB1BB2A8B200E4BB21 /* main.m */; };
 		CC6CE2BF1BB2A8B200E4BB21 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2BE1BB2A8B200E4BB21 /* AppDelegate.m */; };
-		CC6CE2C21BB2A8B200E4BB21 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2C11BB2A8B200E4BB21 /* ViewController.m */; };
 		CC6CE2C51BB2A8B200E4BB21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC6CE2C31BB2A8B200E4BB21 /* Main.storyboard */; };
 		CC6CE2C71BB2A8B200E4BB21 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC6CE2C61BB2A8B200E4BB21 /* Images.xcassets */; };
 		CC6CE2CA1BB2A8B200E4BB21 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC6CE2C81BB2A8B200E4BB21 /* LaunchScreen.xib */; };
 		CC6CE2D61BB2A8B200E4BB21 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2D51BB2A8B200E4BB21 /* ____Tests.m */; };
+		CC6CE2E41BB38CCA00E4BB21 /* PersonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2E31BB38CCA00E4BB21 /* PersonTableViewController.m */; };
+		CC6CE2E71BB38CDE00E4BB21 /* RentalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2E61BB38CDE00E4BB21 /* RentalViewController.m */; };
+		CC6CE2EA1BB38CEB00E4BB21 /* OldHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2E91BB38CEB00E4BB21 /* OldHouseViewController.m */; };
+		CC6CE2ED1BB38D0B00E4BB21 /* PersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2EC1BB38D0B00E4BB21 /* PersonTableViewCell.m */; };
+		CC6CE2F01BB393D800E4BB21 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2EF1BB393D800E4BB21 /* LoginViewController.m */; };
+		CC6CE2F31BB39BD400E4BB21 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2F21BB39BD400E4BB21 /* CollectionViewController.m */; };
+		CC6CE2F61BB39F5F00E4BB21 /* SaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2F51BB39F5F00E4BB21 /* SaleViewController.m */; };
+		CC6CE2F91BB39FD300E4BB21 /* AboutMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6CE2F81BB39FD300E4BB21 /* AboutMeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +39,28 @@
 		CC6CE2BB1BB2A8B200E4BB21 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CC6CE2BD1BB2A8B200E4BB21 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CC6CE2BE1BB2A8B200E4BB21 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		CC6CE2C01BB2A8B200E4BB21 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		CC6CE2C11BB2A8B200E4BB21 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		CC6CE2C41BB2A8B200E4BB21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC6CE2C61BB2A8B200E4BB21 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CC6CE2C91BB2A8B200E4BB21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CC6CE2CF1BB2A8B200E4BB21 /* 新亚企航Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "新亚企航Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC6CE2D41BB2A8B200E4BB21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC6CE2D51BB2A8B200E4BB21 /* ____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____Tests.m"; sourceTree = "<group>"; };
+		CC6CE2E21BB38CCA00E4BB21 /* PersonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewController.h; sourceTree = "<group>"; };
+		CC6CE2E31BB38CCA00E4BB21 /* PersonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewController.m; sourceTree = "<group>"; };
+		CC6CE2E51BB38CDE00E4BB21 /* RentalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RentalViewController.h; sourceTree = "<group>"; };
+		CC6CE2E61BB38CDE00E4BB21 /* RentalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RentalViewController.m; sourceTree = "<group>"; };
+		CC6CE2E81BB38CEB00E4BB21 /* OldHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OldHouseViewController.h; sourceTree = "<group>"; };
+		CC6CE2E91BB38CEB00E4BB21 /* OldHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldHouseViewController.m; sourceTree = "<group>"; };
+		CC6CE2EB1BB38D0B00E4BB21 /* PersonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonTableViewCell.h; sourceTree = "<group>"; };
+		CC6CE2EC1BB38D0B00E4BB21 /* PersonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTableViewCell.m; sourceTree = "<group>"; };
+		CC6CE2EE1BB393D800E4BB21 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		CC6CE2EF1BB393D800E4BB21 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		CC6CE2F11BB39BD400E4BB21 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
+		CC6CE2F21BB39BD400E4BB21 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
+		CC6CE2F41BB39F5F00E4BB21 /* SaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleViewController.h; sourceTree = "<group>"; };
+		CC6CE2F51BB39F5F00E4BB21 /* SaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleViewController.m; sourceTree = "<group>"; };
+		CC6CE2F71BB39FD300E4BB21 /* AboutMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutMeViewController.h; sourceTree = "<group>"; };
+		CC6CE2F81BB39FD300E4BB21 /* AboutMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutMeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +102,10 @@
 		CC6CE2B81BB2A8B200E4BB21 /* 新亚企航 */ = {
 			isa = PBXGroup;
 			children = (
-				CC6CE2BD1BB2A8B200E4BB21 /* AppDelegate.h */,
-				CC6CE2BE1BB2A8B200E4BB21 /* AppDelegate.m */,
-				CC6CE2C01BB2A8B200E4BB21 /* ViewController.h */,
-				CC6CE2C11BB2A8B200E4BB21 /* ViewController.m */,
+				CC6CE2E11BB38CB800E4BB21 /* Person */,
+				CC6CE2E01BB38C9900E4BB21 /* Rental */,
+				CC6CE2DF1BB38C8800E4BB21 /* OldHouse */,
 				CC6CE2C31BB2A8B200E4BB21 /* Main.storyboard */,
-				CC6CE2C61BB2A8B200E4BB21 /* Images.xcassets */,
-				CC6CE2C81BB2A8B200E4BB21 /* LaunchScreen.xib */,
 				CC6CE2B91BB2A8B200E4BB21 /* Supporting Files */,
 			);
 			path = "新亚企航";
@@ -96,6 +114,10 @@
 		CC6CE2B91BB2A8B200E4BB21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CC6CE2BD1BB2A8B200E4BB21 /* AppDelegate.h */,
+				CC6CE2BE1BB2A8B200E4BB21 /* AppDelegate.m */,
+				CC6CE2C61BB2A8B200E4BB21 /* Images.xcassets */,
+				CC6CE2C81BB2A8B200E4BB21 /* LaunchScreen.xib */,
 				CC6CE2BA1BB2A8B200E4BB21 /* Info.plist */,
 				CC6CE2BB1BB2A8B200E4BB21 /* main.m */,
 			);
@@ -117,6 +139,43 @@
 				CC6CE2D41BB2A8B200E4BB21 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CC6CE2DF1BB38C8800E4BB21 /* OldHouse */ = {
+			isa = PBXGroup;
+			children = (
+				CC6CE2E81BB38CEB00E4BB21 /* OldHouseViewController.h */,
+				CC6CE2E91BB38CEB00E4BB21 /* OldHouseViewController.m */,
+			);
+			name = OldHouse;
+			sourceTree = "<group>";
+		};
+		CC6CE2E01BB38C9900E4BB21 /* Rental */ = {
+			isa = PBXGroup;
+			children = (
+				CC6CE2E51BB38CDE00E4BB21 /* RentalViewController.h */,
+				CC6CE2E61BB38CDE00E4BB21 /* RentalViewController.m */,
+			);
+			name = Rental;
+			sourceTree = "<group>";
+		};
+		CC6CE2E11BB38CB800E4BB21 /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				CC6CE2E21BB38CCA00E4BB21 /* PersonTableViewController.h */,
+				CC6CE2E31BB38CCA00E4BB21 /* PersonTableViewController.m */,
+				CC6CE2EB1BB38D0B00E4BB21 /* PersonTableViewCell.h */,
+				CC6CE2EC1BB38D0B00E4BB21 /* PersonTableViewCell.m */,
+				CC6CE2EE1BB393D800E4BB21 /* LoginViewController.h */,
+				CC6CE2EF1BB393D800E4BB21 /* LoginViewController.m */,
+				CC6CE2F11BB39BD400E4BB21 /* CollectionViewController.h */,
+				CC6CE2F21BB39BD400E4BB21 /* CollectionViewController.m */,
+				CC6CE2F41BB39F5F00E4BB21 /* SaleViewController.h */,
+				CC6CE2F51BB39F5F00E4BB21 /* SaleViewController.m */,
+				CC6CE2F71BB39FD300E4BB21 /* AboutMeViewController.h */,
+				CC6CE2F81BB39FD300E4BB21 /* AboutMeViewController.m */,
+			);
+			name = Person;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC6CE2C21BB2A8B200E4BB21 /* ViewController.m in Sources */,
+				CC6CE2F31BB39BD400E4BB21 /* CollectionViewController.m in Sources */,
 				CC6CE2BF1BB2A8B200E4BB21 /* AppDelegate.m in Sources */,
+				CC6CE2EA1BB38CEB00E4BB21 /* OldHouseViewController.m in Sources */,
+				CC6CE2ED1BB38D0B00E4BB21 /* PersonTableViewCell.m in Sources */,
+				CC6CE2F91BB39FD300E4BB21 /* AboutMeViewController.m in Sources */,
+				CC6CE2E41BB38CCA00E4BB21 /* PersonTableViewController.m in Sources */,
+				CC6CE2F01BB393D800E4BB21 /* LoginViewController.m in Sources */,
+				CC6CE2E71BB38CDE00E4BB21 /* RentalViewController.m in Sources */,
 				CC6CE2BC1BB2A8B200E4BB21 /* main.m in Sources */,
+				CC6CE2F61BB39F5F00E4BB21 /* SaleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +484,7 @@
 				CC6CE2DB1BB2A8B200E4BB21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CC6CE2DC1BB2A8B200E4BB21 /* Build configuration list for PBXNativeTarget "新亚企航Tests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +493,7 @@
 				CC6CE2DE1BB2A8B200E4BB21 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
