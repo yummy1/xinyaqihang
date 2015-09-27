@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface RentalViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segemC;
+@property (weak, nonatomic) IBOutlet UITableView *MyTabView;
 
 @end

@@ -1,30 +1,23 @@
 //
-//  OldHouseViewController.m
+//  LookViewController.m
 //  新亚企航
 //
 //  Created by qingyun on 15/9/24.
 //  Copyright (c) 2015年 qingyun. All rights reserved.
 //
 
-#import "OldHouseViewController.h"
+#import "LookViewController.h"
 
-@interface OldHouseViewController ()
+@interface LookViewController ()
 
 @end
 
-@implementation OldHouseViewController
+@implementation LookViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // Do any additional setup after loading the view.
 }
-
--(void)viewWillAppear:(BOOL)animated
-{
-   
-    
-   }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

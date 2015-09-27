@@ -10,10 +10,14 @@
 //#import "LoginViewController.h"
 //#import "CollectionViewController.h"
 #import "AboutMeViewController.h"
+#import "PersonTableViewCell.h"
 
 @interface PersonTableViewController ()
 @property(nonatomic,strong)NSArray *datas;
+@property(nonatomic)int loginNum;
+@property(nonatomic,strong)NSString *NoPhoneNum;
 
+@property(nonatomic,strong)NSArray *Ldatas;
 
 
 @end
@@ -22,10 +26,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _loginNum=0;
     _datas=@[@"登陆/注册",@"我的收藏",@"浏览记录",@"我要卖房",@"关于我们"];
     
+    _Ldatas=@[@"用户中心",@"我的收藏",@"浏览记录",@"我要卖房",@"关于我们"];
+    NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+    [center addObserver:self selector:@selector(notice:) name:@"123" object:nil];
+    
+    
 }
+
+-(void)notice:(id)sender{
+
+    NSDictionary *userInfo=[sender valueForKey:@"userInfo"];
+    NSString *Nostr=[userInfo valueForKey:@"1"];
+    
+    _loginNum=[Nostr intValue];
+    
+    _NoPhoneNum=[userInfo valueForKey:@"2"];
+    [self.tableView reloadData];
+ 
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -51,24 +74,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonSettingCell" forIndexPath:indexPath];
     
-       cell.textLabel.text=self.datas[indexPath.row];
+    if (_loginNum ==0) {
+        cell.textLabel.text=self.datas[indexPath.row];
+    }
+    else{
+        cell.textLabel.text=self.Ldatas[indexPath.row];
+    }
     
          //LoginViewController *Vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     UIViewController *vc;
-    if (indexPath.row==0) {
+    if (indexPath.row==0 && [cell.textLabel.text isEqualToString:@"登陆/注册"]) {
          vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
     }
+    else{
+        vc=[self.storyboard instantiateViewControllerWithIdentifier:@"logout"];
+        [vc setValue:_NoPhoneNum forKey:@"PhoneNum"];
+    }
+    
     if (indexPath.row==1) {
         vc=[self.storyboard instantiateViewControllerWithIdentifier:@"Collect"];
     }
    
     if (indexPath.row==2) {
-        vc=[self.storyboard instantiateViewControllerWithIdentifier:@"Collect"];
+        vc=[self.storyboard instantiateViewControllerWithIdentifier:@"look"];
     }
     
     if (indexPath.row==3) {
