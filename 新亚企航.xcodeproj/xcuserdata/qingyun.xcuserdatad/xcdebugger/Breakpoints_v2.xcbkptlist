@@ -2,4 +2,134 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;/DetailTableViewController.m"
+            timestampString = "465034146.504598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
+            landmarkName = "-tableView:numberOfRowsInSection:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;/DetailTableViewController.m"
+            timestampString = "465034146.504598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-loadDataFromServer"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;/DetailTableViewController.m"
+            timestampString = "465034146.504598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "-loadDataFromServer"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[DetailTableViewController loadDataFromServer]_block_invoke"
+                  moduleName = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qingyun/Desktop/OC/Practice/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/DetailTableViewController.m"
+                  timestampString = "465032400.37727"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "247">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[DetailTableViewController loadDataFromServer]_block_invoke"
+                  moduleName = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qingyun/Desktop/OC/Practice/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/DetailTableViewController.m"
+                  timestampString = "465032400.377774"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "265">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;/DetailTableViewController.m"
+            timestampString = "465034146.504598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "-loadDataFromServer"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[DetailTableViewController loadDataFromServer]"
+                  moduleName = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qingyun/Desktop/OC/Practice/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/DetailTableViewController.m"
+                  timestampString = "465032400.555531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "616">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__47-[DetailTableViewController loadDataFromServer]_block_invoke"
+                  moduleName = "&#x65b0;&#x4e9a;&#x4f01;&#x822a;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qingyun/Desktop/OC/Practice/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/%E6%96%B0%E4%BA%9A%E4%BC%81%E8%88%AA/DetailTableViewController.m"
+                  timestampString = "465032400.555833"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

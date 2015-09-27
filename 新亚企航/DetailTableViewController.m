@@ -22,9 +22,45 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden=NO;
+    
+//    UIBarButtonItem *Shareiterm=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                                        target:self action:@selector(sharedToThird)];
+//    
+    
+    UIBarButtonItem *Shareiterm=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"分享未点击"] style: UIBarButtonItemStyleDone target:self action:@selector(sharedToThird)];
+    
+ 
+
+    
+    UIBarButtonItem *Collectiterm=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"收藏未点击"] style:UIBarButtonItemStyleDone target:self action:@selector(collectionFromSever)];
+    
+    Shareiterm.image=[UIImage imageNamed:@"收藏未点击"];
+    Collectiterm.image=[UIImage imageNamed:@"分享未点击"];
+    NSArray *iterms=@[Shareiterm,Collectiterm];
+    
+    
+    self.navigationItem.rightBarButtonItems=iterms;
+    
+    
     [self loadDataFromServer];
     
+    
+    
+    
 }
+
+-(void)sharedToThird
+{
+
+
+}
+
+-(void)collectionFromSever
+{
+
+
+}
+
 -(void)loadDataFromServer
 {
     
@@ -44,9 +80,9 @@
         
         
         NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
+        
         _Ddatas=[responseBody valueForKey:@"list"];
        // NSLog(@"=====================%@",_Ddatas);
-        
         
         [self.tableView reloadData];
         
@@ -81,48 +117,80 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
- cell.Dfloor.text=[self.Ddatas[0][@"floor"]stringValue ];
-    cell.Daddress.text=self.Ddatas[0][@"address"];
-    cell.Dfitment.text=self.Ddatas[0][@"fitment"];
-    cell.Dhousetype.text=self.Ddatas[0][@"type"];
-    cell.Dstate.text=self.Ddatas[0][@"state"];
-    cell.Darea.text=[self.Ddatas[0][@"area"] stringValue] ;
-    cell.Dtoward.text=self.Ddatas[0][@"toward"];
-    cell.Dname.text=self.Ddatas[0][@"name"];
-    cell.Dmob.text=self.Ddatas[0][@"mob"];
-    cell.DPhone.text=self.Ddatas[0][@"mob"];
+    if (![self.Ddatas[0][@"floor"] isKindOfClass:[NSNull class]]) {
+         cell.Dfloor.text=[self.Ddatas[0][@"floor"]stringValue ];
+    }
+    
+  
+    if (![self.Ddatas [0][@"address"] isKindOfClass:[NSNull class]]) {
+       cell.Daddress.text=self.Ddatas[0][@"address"];
+    }
+    
+    
+    
+    if (![self.Ddatas [0][@"fitment"] isKindOfClass:[NSNull class]]) {
+         cell.Dfitment.text=self.Ddatas[0][@"fitment"];
+    }
+  
+    
+    if (![self.Ddatas [0][@"type"] isKindOfClass:[NSNull class]]) {
+       cell.Dhousetype.text=self.Ddatas[0][@"type"];
+    }
+    if (![self.Ddatas [0][@"state"] isKindOfClass:[NSNull class]]) {
+        cell.Dstate.text=self.Ddatas[0][@"state"];
+    }
+   
+    if (![self.Ddatas [0][@"area"] isKindOfClass:[NSNull class]]) {
+        cell.Darea.text=[self.Ddatas[0][@"area"] stringValue] ;
+
+    }
+    if (![self.Ddatas [0][@"toward"] isKindOfClass:[NSNull class]]) {
+        cell.Dtoward.text=self.Ddatas[0][@"toward"];
+    }
+    
+    
+    if (![self.Ddatas [0][@"name"] isKindOfClass:[NSNull class]]) {
+        cell.Dname.text=self.Ddatas[0][@"name"];
+    }
+    
+    if (![self.Ddatas [0][@"mob"] isKindOfClass:[NSNull class]]) {
+        cell.Dmob.text=self.Ddatas[0][@"mob"];
+        cell.DPhone.text=self.Ddatas[0][@"mob"];
+    }
+
     cell.Dtitle.text=self.GetTitle;
     cell.Dprice.text=self.Getprice; 
+  
+    if (![self.Ddatas [0][@"fitment"] isKindOfClass:[NSNull class]]) {
+        cell.Dfitment.text=self.Ddatas[0][@"fitment"];
+    }
+    if (![self.Ddatas [0][@"config"] isKindOfClass:[NSNull class]]) {
+        cell.Dconfig.text=self.Ddatas[0][@"config"];
+    }
+    if (![self.Ddatas [0][@"desc"] isKindOfClass:[NSNull class]]) {
+        cell.Ddesc.text=self.Ddatas[0][@"desc"];
+    }
     
+
+    if (![self.Ddatas [0][@"com"] isKindOfClass:[NSNull class]]) {
+        cell.Dcom.text=self.Ddatas[0][@"com"];
+    }
+    if (![self.Ddatas [0][@"environmental"] isKindOfClass:[NSNull class]]) {
+        cell.Denvironment.text=self.Ddatas[0][@"environmental"];
+    }
     
-   // cell.DiconDown.image=self.Ddatas[0][@"fitment"];
-    cell.Dconfig.text=self.Ddatas[0][@"config"];
-    cell.Ddesc.text=self.Ddatas[0][@"desc"];
-    cell.Dcom.text=self.Ddatas[0][@"com"];
-    cell.Denvironment.text=self.Ddatas[0][@"environmental"];
-    cell.Dfacility.text=self.Ddatas[0][@"facility"];
-    NSString *urlStr = @"http://www.fungpu.com/houseapp/";
+
+    if (![self.Ddatas [0][@"facility"] isKindOfClass:[NSNull class]]) {
+        cell.Dfacility.text=self.Ddatas[0][@"facility"];
+    }
+
+     NSString *urlStr = @"http://www.fungpu.com/houseapp/";
     NSString *iconUrl=self.Ddatas[0][@"iconurl"];
-    
-    NSString *urlString=[urlStr stringByAppendingPathComponent:iconUrl];
-    NSURL *url=[NSURL URLWithString:urlString];
-    [cell.DiconDown sd_setImageWithURL:url];
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
+    if ([iconUrl isEqual:@""]|[iconUrl isEqual:nil]) {
+        NSString *urlString=[urlStr stringByAppendingPathComponent:iconUrl];
+        NSURL *url=[NSURL URLWithString:urlString];
+        [cell.DiconDown sd_setImageWithURL:url];
+    }
     
     
     
