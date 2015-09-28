@@ -11,9 +11,17 @@
 #import "AFNetworking.h"
 #import "NSJSONSerialization+NSString.h"
 #import "UIImageView+WebCache.h"
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKUI/SSUIShareActionSheetStyle.h>
+#import <ShareSDKUI/SSUIShareActionSheetCustomItem.h>
+#import <ShareSDK/ShareSDK+Base.h>
+#import <ShareSDKExtension/SSEShareHelper.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 
 @interface DetailTableViewController ()
 @property(nonatomic,strong)NSArray *Ddatas;
+@property(nonatomic,strong)NSArray *Cdatas;
 @end
 
 @implementation DetailTableViewController
@@ -51,14 +59,14 @@
 
 -(void)sharedToThird
 {
-
+    [self showShareActionSheet:self.view];
 
 }
 
 -(void)collectionFromSever
 {
 
-
+    [self collecttoSever];
 }
 
 -(void)loadDataFromServer
@@ -103,13 +111,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
     return 1;
 }
@@ -197,6 +205,148 @@
     return cell;
 }
 
+
+
+- (void)showShareActionSheet:(UIView *)view
+{
+    /**
+     * 在简单分享中，只要设置共有分享参数即可分享到任意的社交平台
+     **/
+   // __weak DetailTableViewController *theController = self;
+    
+    //1、创建分享参数（必要）
+    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+    //    NSArray* imageArray = @[[UIImage imageNamed:@"shareImg.png"]];
+    [shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                     images:nil
+                                        url:[NSURL URLWithString:@"http://mob.com"]
+                                      title:@"分享标题"
+                                       type:SSDKContentTypeAuto];
+    
+    
+    
+    //2、分享
+    [ShareSDK showShareActionSheet:view
+                             items:@[@(SSDKPlatformTypeSinaWeibo),  @(SSDKPlatformTypeWechat), @(SSDKPlatformTypeQQ)]
+                       shareParams:shareParams
+               onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+                   
+                   switch (state) {
+                           
+                       case SSDKResponseStateBegin:
+                       {
+                           //                           [theController showLoadingView:YES];
+                           break;
+                       }
+                       case SSDKResponseStateSuccess:
+                       {
+                           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功"
+                                                                               message:nil
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"确定"
+                                                                     otherButtonTitles:nil];
+                           [alertView show];
+                           break;
+                       }
+                       case SSDKResponseStateFail:
+                       {
+                           if (platformType == SSDKPlatformTypeSMS && [error code] == 201)
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:@"失败原因可能是：1、短信应用没有设置帐号；2、设备不支持短信应用；3、短信应用在iOS 7以上才能发送带附件的短信。"
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           else if(platformType == SSDKPlatformTypeMail && [error code] == 201)
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:@"失败原因可能是：1、邮件应用没有设置帐号；2、设备不支持邮件应用；"
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           else
+                           {
+                               UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"分享失败"
+                                                                               message:[NSString stringWithFormat:@"%@",error]
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"OK"
+                                                                     otherButtonTitles:nil, nil];
+                               [alert show];
+                               break;
+                           }
+                           break;
+                       }
+                       case SSDKResponseStateCancel:
+                       {
+                           UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消"
+                                                                               message:nil
+                                                                              delegate:nil
+                                                                     cancelButtonTitle:@"确定"
+                                                                     otherButtonTitles:nil];
+                           [alertView show];
+                           break;
+                       }
+                       default:
+                           break;
+                   }
+                   
+                   if (state != SSDKResponseStateBegin)
+                   {
+                       //                       [theController showLoadingView:NO];
+                       //                       [theController.tableView reloadData];
+                   }
+                   
+               }];
+}
+
+-(void)collecttoSever
+{NSDictionary *paras = @{@"commandcode": @"123", @"REQUEST_BODY":@{@"xid":self.searchString}};
+    //序列化为字符串
+    NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
+    
+    
+    //完整地提交的参数
+    NSDictionary *parameters = @{@"HEAD_INFO":parsString};
+    
+    NSString *urlString = @"http://www.fungpu.com/houseapp/apprq.do";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
+        NSLog(@"%@", responseObject);
+        
+        NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
+//        
+//        NSString *srt=[responseBody valueForKey:@"RESPONSE_CODE_INFO"];
+//        NSLog(@"LLLLLLLLLLLLLLLLLL%@",srt);
+//        int state=[_Ldatas[0][@"state"] intValue];
+//        if (state ==0) {
+//            NSNotification * notice = [NSNotification notificationWithName:@"123" object:nil userInfo:@{@"1":@"1",@"2":_UserName.text}];
+//            //发送消息
+//            [[NSNotificationCenter defaultCenter]postNotification:notice];
+//            [self alertShow];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        
+//        }else if(state==1)
+//        {
+//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"登录失败，请重新登录!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            [self.view addSubview:alert];
+//            [alert show];
+//        }
+//        
+    } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"%@", error);
+    }];
+
+
+
+}
 
 /*
 // Override to support conditional editing of the table view.

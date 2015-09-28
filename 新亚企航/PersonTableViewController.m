@@ -79,6 +79,8 @@
     }
     else{
         cell.textLabel.text=self.Ldatas[indexPath.row];
+      
+        
     }
     
          //LoginViewController *Vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];

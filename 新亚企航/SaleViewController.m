@@ -16,7 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.rightBarButtonItem.title=@"添加房源";
+    
+    UIBarButtonItem *addsale=[[UIBarButtonItem alloc]init];
+    addsale.title=@"添加房源";
+    self.navigationItem.rightBarButtonItem=addsale;
+   
+    
 }
 
 - (void)didReceiveMemoryWarning {
