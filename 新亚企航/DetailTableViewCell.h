@@ -10,7 +10,8 @@
 
 @interface DetailTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UIScrollView *myScrollview;
+@property (weak, nonatomic) IBOutlet UIImageView *iconTop;
 @property (weak, nonatomic) IBOutlet UILabel *Dtitle;
 @property (weak, nonatomic) IBOutlet UILabel *Dprice;
 @property (weak, nonatomic) IBOutlet UILabel *Dhousetype;

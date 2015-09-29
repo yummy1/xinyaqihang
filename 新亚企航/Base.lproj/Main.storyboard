@@ -502,9 +502,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5p6-gP-AvV" id="E3X-qj-mtr">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WgJ-g6-fjw">
-                                            <rect key="frame" x="0.0" y="-12" width="375" height="117.5"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21f-35-ipF">
                                             <rect key="frame" x="4" y="101" width="367" height="40"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -718,6 +715,14 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wnf-fw-j4R">
+                                            <rect key="frame" x="0.0" y="-14" width="482" height="128"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qIq-m0-XJb">
+                                                    <rect key="frame" x="0.0" y="8" width="482" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                        </scrollView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -739,7 +744,8 @@
                                     <outlet property="Dstate" destination="XeF-4a-T6J" id="rDy-EI-eCd"/>
                                     <outlet property="Dtitle" destination="21f-35-ipF" id="KAL-ST-i2Y"/>
                                     <outlet property="Dtoward" destination="LZZ-de-inL" id="yMG-ke-w4P"/>
-                                    <outlet property="icon" destination="WgJ-g6-fjw" id="uvd-IT-HJO"/>
+                                    <outlet property="iconTop" destination="qIq-m0-XJb" id="L83-6t-yLe"/>
+                                    <outlet property="myScrollview" destination="wnf-fw-j4R" id="1iy-Fq-wGM"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

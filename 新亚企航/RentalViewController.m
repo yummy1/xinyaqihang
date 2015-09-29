@@ -33,10 +33,7 @@
 
 @property(nonatomic,strong)NSArray *PriceDatas;
 @property(nonatomic,strong)NSDictionary *MoreDict;
-
-
 @property(nonatomic,strong)UIView *Blueview;
-@property(nonatomic) int Number;
 @property(nonatomic)int ALLIndexpath;
 @property(nonatomic,strong)NSString *compareStreetString;
 @property(nonatomic,strong)NSString *comparePrice;
@@ -97,7 +94,7 @@
 }
 - (IBAction)PriceBtnWithCreateTabview:(id)sender {
     
-    if ((_switchArea = !_switchArea)) {
+    if ((_switchPrice = !_switchPrice)) {
         _PriceTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 100, 375, 350)];
         [self.view addSubview: _PriceTabView];
         _PriceTabView.delegate=self;
@@ -148,6 +145,9 @@
         
         NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
         _datas=[responseBody valueForKey:@"list"];
+        NSLog(@"***************%@",_datas);
+        
+        
         [_MyTabView reloadData];
     } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"%@", error);
@@ -205,9 +205,7 @@
              
              
              UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:priceId];
-             // cell.textLabel.text=self.AreaDatas[indexPath.row];
              [cell.textLabel setText:self.PriceDatas[indexPath.row]];
-        
              return cell;
 
          
@@ -374,63 +372,107 @@
                  
                  }
     }else if(tableView.tag==102 )
-      
+       
+        
     
     {
-        UITableViewCell *cell =[_streetTabView cellForRowAtIndexPath:indexPath];
-        _compareStreetString=  cell.textLabel.text;
-        int i;
-         if ( i=0,i<self.datas.count+1,i++)
-         {
-             NSString *simpleaddWorld=[self.datas[i]valueForKey:@"simpleadd"];
-             if ([simpleaddWorld hasPrefix:_compareStreetString]) {
-                 _Number=i;
-                 [self.AreaTabView removeFromSuperview];
-                 [_Blueview removeFromSuperview];
-                 [_streetTabView removeFromSuperview];
-                 [self.MyTabView reloadData];
-                 
+        
+        NSArray *Arr=self.ListDatas[_ALLIndexpath-1];
+        if (indexPath.row<Arr.count+1) {
+            UITableViewCell *cell =[_streetTabView cellForRowAtIndexPath:indexPath];
+            _compareStreetString=  cell.textLabel.text;
+        
+            NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"desc":@"0",@"p":@"1",@"lat":@"24.97307931636",@"lng":@"102.69840055824",@"simpleadd":_compareStreetString}};
+            //序列化为字符串
+            NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
+            
+            
+            //完整地提交的参数
+            NSDictionary *parameters = @{@"HEAD_INFO":parsString};
+            
+            NSString *urlString = @"http://www.fungpu.com/houseapp/apprq.do";
+            
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+            [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
+                //NSLog(@"%@", responseObject);
                 
-             }else{
-                 _datas=nil;
-                 [self.MyTabView reloadData];
+                NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
+        
+                _datas=[responseBody valueForKey:@"list"];;
+                NSLog(@"SteetSteetSteetSteetSteetSteet%@",_datas);
                 
-             
-             }
+                if (_datas.count==0) {
+                    
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"没有搜索结果!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [self.view addSubview:alert];
+                    [alert show];
+                }
+                
+                [_MyTabView reloadData];
+                _switchArea=NO;
+                [_AreaTabView removeFromSuperview];
+                [_Blueview removeFromSuperview];
+                [_streetTabView removeFromSuperview];
+                
+            } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
+                NSLog(@"%@", error);
+            }];
+        
+        
+        
         }
-        
-        
    }else if (tableView.tag==201)
    {
    UITableViewCell *cell =[tableView cellForRowAtIndexPath:indexPath];
        _comparePrice=cell.textLabel.text;
        
        if (indexPath.row==0) {
-           _switchPrice=NO;
+           _switchPrice=YES;
            [_PriceTabView removeFromSuperview];
           
        }else if(indexPath.row<7)
        {
-           NSArray *array = [_comparePrice componentsSeparatedByString:@"-"];
-           int i;
-           if ( i=0,i<self.datas.count+1,i++)
-           {
-               NSString *PriceWorld=[self.datas[i]valueForKey:@"price"];
-               if ([PriceWorld intValue] >[array[0] intValue]&&[PriceWorld intValue] <[array[1] intValue]) {
-                   _Number=i;
-                  
-                   [self.MyTabView reloadData];
-                   
-                   
-               }else{
-                   _datas=nil;
-                   [self.MyTabView reloadData];
-                   
-                   
-               }
-           }
 
-       
+              // NSString *PriceWorld=[self.datas[indexPath.row]valueForKey:@"price"];
+               NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"desc":@"0",@"p":@"1",@"lat":@"24.97307931636",@"lng":@"102.69840055824",@"price":_comparePrice}};
+               //序列化为字符串
+               NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
+               
+               
+               //完整地提交的参数
+               NSDictionary *parameters = @{@"HEAD_INFO":parsString};
+               
+               NSString *urlString = @"http://www.fungpu.com/houseapp/apprq.do";
+               
+               AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+               manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+               [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
+                   //NSLog(@"%@", responseObject);
+                   
+                   NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
+            //       NSArray *SelectPriceResult=[responseBody valueForKey:@"list"];
+                   _datas=[responseBody valueForKey:@"list"];;
+                  // NSLog(@"price%@",_datas);
+                   
+                   if (_datas.count==0) {
+                       
+                       UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"没有搜索结果!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                       [self.view addSubview:alert];
+                       [alert show];
+                   }
+                   
+                   [_MyTabView reloadData];
+                   _switchPrice=NO;
+                   [_PriceTabView removeFromSuperview];
+               } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
+                   NSLog(@"%@", error);
+               }];
+               
+               
+
+               
+              
        }
    
        

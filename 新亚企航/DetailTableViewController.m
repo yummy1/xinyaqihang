@@ -198,6 +198,24 @@
         NSString *urlString=[urlStr stringByAppendingPathComponent:iconUrl];
         NSURL *url=[NSURL URLWithString:urlString];
         [cell.DiconDown sd_setImageWithURL:url];
+        
+        
+        NSArray *ImagesArr=self.Ddatas[0][@"image"];
+        cell.myScrollview.contentSize=CGSizeMake(375*(ImagesArr.count+1), 100);
+        
+        int b =(int)ImagesArr.count+1;
+        for(int i=0;i<b;i++)
+        {
+        NSString *imageString=[urlStr stringByAppendingPathComponent:ImagesArr[i]];
+          NSURL *ImageUrl=[NSURL URLWithString:imageString];
+        
+           // cell.iconTop
+            
+            [cell.iconTop sd_setImageWithURL:ImageUrl];
+        
+        }
+        
+        
     }
     
     
