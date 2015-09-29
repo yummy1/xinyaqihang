@@ -324,7 +324,7 @@
 }
 
 -(void)collecttoSever
-{NSDictionary *paras = @{@"commandcode": @"123", @"REQUEST_BODY":@{@"xid":self.searchString}};
+{NSDictionary *paras = @{@"commandcode": @"123", @"REQUEST_BODY":@{@"xid":self.searchString,@"username":@"13569832754"}};
     //序列化为字符串
     NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
     
@@ -339,25 +339,7 @@
     [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
         NSLog(@"%@", responseObject);
         
-        NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
-//        
-//        NSString *srt=[responseBody valueForKey:@"RESPONSE_CODE_INFO"];
-//        NSLog(@"LLLLLLLLLLLLLLLLLL%@",srt);
-//        int state=[_Ldatas[0][@"state"] intValue];
-//        if (state ==0) {
-//            NSNotification * notice = [NSNotification notificationWithName:@"123" object:nil userInfo:@{@"1":@"1",@"2":_UserName.text}];
-//            //发送消息
-//            [[NSNotificationCenter defaultCenter]postNotification:notice];
-//            [self alertShow];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        
-//        }else if(state==1)
-//        {
-//            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"登录失败，请重新登录!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [self.view addSubview:alert];
-//            [alert show];
-//        }
-//        
+       // NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
     } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"%@", error);
     }];

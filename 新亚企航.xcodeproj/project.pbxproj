@@ -76,6 +76,7 @@
 		CCB82DF81BB7E612005D7645 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB82DF71BB7E612005D7645 /* libsqlite3.dylib */; };
 		CCB82DFB1BB7EBA3005D7645 /* CityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB82DFA1BB7EBA3005D7645 /* CityTableViewController.m */; };
 		CCB82DFE1BB7F4A2005D7645 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB82DFD1BB7F4A2005D7645 /* SearchViewController.m */; };
+		CCE716B01BBA6A52009C4C70 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CCE716AF1BBA6A52009C4C70 /* SignViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,8 @@
 		CCB82DFA1BB7EBA3005D7645 /* CityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityTableViewController.m; sourceTree = "<group>"; };
 		CCB82DFC1BB7F4A2005D7645 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		CCB82DFD1BB7F4A2005D7645 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		CCE716AE1BBA6A52009C4C70 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		CCE716AF1BBA6A52009C4C70 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,6 +370,8 @@
 				CC6CE2FB1BB3CF6900E4BB21 /* LookViewController.m */,
 				CCB82DB51BB6CA6C005D7645 /* logoutViewController.h */,
 				CCB82DB61BB6CA6C005D7645 /* logoutViewController.m */,
+				CCE716AE1BBA6A52009C4C70 /* SignViewController.h */,
+				CCE716AF1BBA6A52009C4C70 /* SignViewController.m */,
 			);
 			name = Person;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE716B01BBA6A52009C4C70 /* SignViewController.m in Sources */,
 				CCB82D901BB4F53B005D7645 /* SDWebImageDecoder.m in Sources */,
 				CCB82D831BB4F53B005D7645 /* AFHTTPRequestOperation.m in Sources */,
 				CCB82D8C1BB4F53B005D7645 /* MKAnnotationView+WebCache.m in Sources */,

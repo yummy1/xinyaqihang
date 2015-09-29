@@ -35,6 +35,8 @@
 @property(nonatomic,strong)NSDictionary *MoreDict;
 @property(nonatomic,strong)UIView *Blueview;
 @property(nonatomic)int ALLIndexpath;
+@property(nonatomic,strong)NSString *compareArea;
+@property(nonatomic,strong)NSString *compareArea22;
 @property(nonatomic,strong)NSString *compareStreetString;
 @property(nonatomic,strong)NSString *comparePrice;
 
@@ -51,7 +53,7 @@
     _MyTabView.delegate=self;
     _MyTabView.dataSource=self;
     
-    _PriceDatas=@[@"不限",@"0-500",@"500-800",@"800—1000",@"1000-1500",@"1500-2500",@"2500-5000"];
+    _PriceDatas=@[@"不限",@"0-500",@"500-800",@"800-1000",@"1000-1500",@"1500-2500",@"2500-5000"];
     
     
     _switchArea=NO;
@@ -78,6 +80,7 @@
     
     if ((_switchArea = !_switchArea)) {
         _AreaTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 100, 375, 350)];
+        self.AreaTabView .separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.view addSubview: _AreaTabView];
         [self GetStreetAndArea];
         _AreaTabView.delegate=self;
@@ -85,6 +88,7 @@
         _AreaTabView.tag=101;
         
             }else {
+                
     
         [_AreaTabView removeFromSuperview];
         [_Blueview removeFromSuperview];
@@ -104,25 +108,23 @@
     else {
         
         [_PriceTabView removeFromSuperview];
-       
-        
     }
 }
 
 
 - (IBAction)moreBtnWithTAbView:(id)sender {
     
-    
-    if ((_switchArea = !_switchArea)) {
-        _MoreTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 100, 375, 350)];
-        [self.view addSubview: _MoreTabView];
-        _MoreTabView.tag=301;
-    }else {
-        
-        [_MoreTabView removeFromSuperview];
-      
-        
-    }
+//    
+//    if ((_switchMore = !_switchMore)) {
+//        _MoreTabView=[[UITableView alloc]initWithFrame:CGRectMake(0, 100, 375, 350)];
+//        [self.view addSubview: _MoreTabView];
+//        _MoreTabView.tag=301;
+//    }else {
+//        
+//        [_MoreTabView removeFromSuperview];
+//      
+//        
+//    }
 
 }
 -(void)loadDataFromSerVer
@@ -192,6 +194,7 @@
        // cell.textLabel.text=self.AreaDatas[indexPath.row];
         [cell.textLabel setText:self.AreaDatas[indexPath.row]];
         return cell;
+        
        
         
     }else if
@@ -239,7 +242,12 @@
     DetailTableViewController *controller=(DetailTableViewController*)sender;
    UITableViewController *dstvc=segue.destinationViewController;
     
-   
+    
+    
+    [_AreaTabView removeFromSuperview];
+    [_Blueview removeFromSuperview];
+    [_streetTabView removeFromSuperview];
+
     [dstvc setValue:_NoNameString  forKey:@"searchString"];
     [dstvc setValue:_NoNameTitle  forKey:@"GetTitle"];
      [dstvc setValue:_NoNamePrice  forKey:@"Getprice"];
@@ -326,11 +334,6 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
         //NSLog(@"%@", responseObject);
-      
-        
-        
-        
-        
         NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
         //_AreaDatas=[NSMutableArray array];
       _AreaDatas=[[responseBody valueForKey:@"list"]valueForKey:@"area"];
@@ -349,15 +352,24 @@
 
     if (tableView.tag==101) {
         if (indexPath.row==0) {
-            _switchArea=NO;
+           
+            //_switchArea=YES;
             [self.AreaTabView removeFromSuperview];
             [_Blueview removeFromSuperview];
             [_streetTabView removeFromSuperview];
+          
+            //_switchArea=NO;
             [self loadDataFromSerVer];
              }else if (indexPath.row<self.AreaDatas.count+1)
-
              {
                 
+                 
+                 UITableViewCell *cell =[ _AreaTabView cellForRowAtIndexPath:indexPath];
+                 _compareArea=  cell.textLabel.text;
+                 
+               
+                 
+                 
                 _Blueview =[[UIView alloc]initWithFrame:CGRectMake(129, 100, 1, 350)];
                  _Blueview.backgroundColor=[UIColor blueColor];
                  [self.view addSubview:_Blueview];
@@ -365,9 +377,14 @@
                  _streetTabView=[[UITableView alloc]initWithFrame:CGRectMake(130, 100, 273, 350)];
         
                  [self.view addSubview:_streetTabView];
+                 
+               
+                
                  _streetTabView.tag=102;
                  _streetTabView.delegate=self;
                  _streetTabView.dataSource=self;
+                 
+                 
                  _ALLIndexpath=(int)indexPath.row;
                  
                  }
@@ -382,7 +399,10 @@
             UITableViewCell *cell =[_streetTabView cellForRowAtIndexPath:indexPath];
             _compareStreetString=  cell.textLabel.text;
         
-            NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"desc":@"0",@"p":@"1",@"lat":@"24.97307931636",@"lng":@"102.69840055824",@"simpleadd":_compareStreetString}};
+            
+            
+            
+            NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"desc":@"0",@"p":@"1",@"lat":@"24.97307931636",@"lng":@"102.69840055824",@"area":_compareArea,@"businessCircle":_compareStreetString}};
             //序列化为字符串
             NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
             
@@ -404,17 +424,24 @@
                 
                 if (_datas.count==0) {
                     
+                    [_AreaTabView removeFromSuperview];
+                    
+                    [_Blueview removeFromSuperview];
+                    [_streetTabView removeFromSuperview];
+                    
+                    
+                    
                     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"没有搜索结果!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                     [self.view addSubview:alert];
                     [alert show];
                 }
                 
-                [_MyTabView reloadData];
-                _switchArea=NO;
+                
+               // _switchArea=NO;
                 [_AreaTabView removeFromSuperview];
                 [_Blueview removeFromSuperview];
                 [_streetTabView removeFromSuperview];
-                
+                [_MyTabView reloadData];
             } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
                 NSLog(@"%@", error);
             }];
@@ -479,5 +506,7 @@
 
    }
 }
+
+
 
 @end

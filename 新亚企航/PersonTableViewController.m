@@ -34,7 +34,8 @@
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [center addObserver:self selector:@selector(notice:) name:@"123" object:nil];
     
-    
+   // self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView .tableFooterView = [[UIView alloc] init];
 }
 
 -(void)notice:(id)sender{
@@ -91,6 +92,9 @@
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     UIViewController *vc;
     if (indexPath.row==0 && [cell.textLabel.text isEqualToString:@"登陆/注册"]) {
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"登陆";
+        self.navigationItem.backBarButtonItem = backItem;
          vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
     }
     else{
