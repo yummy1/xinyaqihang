@@ -17,6 +17,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passWord;
 @property(nonatomic,strong)NSArray *datas;
+
+@property (weak, nonatomic) IBOutlet UIButton *signBtn;
+@property (weak, nonatomic) IBOutlet UIButton *getNumBtn;
+
 @end
 
 @implementation SignViewController

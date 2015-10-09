@@ -92,9 +92,11 @@
     UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     UIViewController *vc;
     if (indexPath.row==0 && [cell.textLabel.text isEqualToString:@"登陆/注册"]) {
+       
         UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
         backItem.title = @"登陆";
         self.navigationItem.backBarButtonItem = backItem;
+        
          vc=[self.storyboard instantiateViewControllerWithIdentifier:@"login"];
     }
     else{
@@ -103,18 +105,34 @@
     }
     
     if (indexPath.row==1) {
+        
+        
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"收藏";
+        self.navigationItem.backBarButtonItem = backItem;
+        
         vc=[self.storyboard instantiateViewControllerWithIdentifier:@"Collect"];
     }
    
     if (indexPath.row==2) {
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"浏览";
+        self.navigationItem.backBarButtonItem = backItem;
         vc=[self.storyboard instantiateViewControllerWithIdentifier:@"look"];
     }
     
     if (indexPath.row==3) {
-        vc=[self.storyboard instantiateViewControllerWithIdentifier:@"sale"];
+              vc=[self.storyboard instantiateViewControllerWithIdentifier:@"sale"];
     }
     
     if (indexPath.row==4) {
+        
+        
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+        backItem.title = @"关于我们";
+        self.navigationItem.backBarButtonItem = backItem;
+        
+
         vc=[[AboutMeViewController alloc]init];
     }
     

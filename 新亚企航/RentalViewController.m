@@ -39,6 +39,7 @@
 @property(nonatomic,strong)NSString *compareArea22;
 @property(nonatomic,strong)NSString *compareStreetString;
 @property(nonatomic,strong)NSString *comparePrice;
+@property(nonatomic,strong)UIRefreshControl *Recontrol;
 
 @end
 
@@ -59,7 +60,28 @@
     _switchArea=NO;
     _switchMore=NO;
     _switchPrice=NO;
+    
+//下拉刷新
+    
+  //  [self setupRefresh];
    }
+
+-(void)setupRefresh
+{
+    //1.添加刷新控件
+    UIRefreshControl *control=[[UIRefreshControl alloc]init];
+    [control addTarget:self action:@selector(loadDataFromSerVer) forControlEvents:UIControlEventValueChanged];
+    [self.MyTabView addSubview:control];
+    
+    //2.马上进入刷新状态，并不会触发UIControlEventValueChanged事件
+    [control beginRefreshing];
+    
+    // 3.加载数据
+    [self loadDataFromSerVer];
+    _Recontrol=control;
+}
+
+
 
 -(void)OnSelect:(UISegmentedControl*)sender
 {
@@ -151,8 +173,11 @@
         
         
         [_MyTabView reloadData];
+        
+        [_Recontrol endRefreshing];
     } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
         NSLog(@"%@", error);
+        [_Recontrol endRefreshing];
     }];
     
 
@@ -397,56 +422,10 @@
         NSArray *Arr=self.ListDatas[_ALLIndexpath-1];
         if (indexPath.row<Arr.count+1) {
             UITableViewCell *cell =[_streetTabView cellForRowAtIndexPath:indexPath];
-            _compareStreetString=  cell.textLabel.text;
-        
+            _compareStreetString= cell.textLabel.text;
             
             
-            
-            NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"desc":@"0",@"p":@"1",@"lat":@"24.97307931636",@"lng":@"102.69840055824",@"area":_compareArea,@"businessCircle":_compareStreetString}};
-            //序列化为字符串
-            NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
-            
-            
-            //完整地提交的参数
-            NSDictionary *parameters = @{@"HEAD_INFO":parsString};
-            
-            NSString *urlString = @"http://www.fungpu.com/houseapp/apprq.do";
-            
-            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-            manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-            [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
-                //NSLog(@"%@", responseObject);
-                
-                NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
-        
-                _datas=[responseBody valueForKey:@"list"];;
-                NSLog(@"SteetSteetSteetSteetSteetSteet%@",_datas);
-                
-                if (_datas.count==0) {
-                    
-                    [_AreaTabView removeFromSuperview];
-                    
-                    [_Blueview removeFromSuperview];
-                    [_streetTabView removeFromSuperview];
-                    
-                    
-                    
-                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"没有搜索结果!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [self.view addSubview:alert];
-                    [alert show];
-                }
-                
-                
-               // _switchArea=NO;
-                [_AreaTabView removeFromSuperview];
-                [_Blueview removeFromSuperview];
-                [_streetTabView removeFromSuperview];
-                [_MyTabView reloadData];
-            } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
-                NSLog(@"%@", error);
-            }];
-        
-        
+            [self loadDataWithAreaAndBusiness];
         
         }
    }else if (tableView.tag==201)
@@ -506,7 +485,58 @@
 
    }
 }
+-(void)loadDataWithAreaAndBusiness
+{
+    NSDictionary *paras = @{@"commandcode": @"108", @"REQUEST_BODY":@{@"city":@"昆明",@"area":_compareArea,@"businesscCircle":_compareStreetString}};
+    
+    
+    
+    
+    //序列化为字符串
+    NSString *parsString = [NSJSONSerialization stringWithJSONObjct:paras];
+    
+    
+    //完整地提交的参数
+    NSDictionary *parameters = @{@"HEAD_INFO":parsString};
+    
+    NSString *urlString = @"http://www.fungpu.com/houseapp/apprq.do";
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    [manager GET:urlString parameters:parameters success:^ void(AFHTTPRequestOperation * operation, id responseObject) {
+        
+        
+        NSDictionary *responseBody=[responseObject valueForKey:@"RESPONSE_BODY"];
+        
+        _datas=[responseBody valueForKey:@"list"];;
+        NSLog(@"SteetSteetSteetSteetSteetSteet%@",_datas);
+        
+                        if (_datas.count==0) {
+        
+                            [_AreaTabView removeFromSuperview];
+                            [_Blueview removeFromSuperview];
+                            [_streetTabView removeFromSuperview];
+        
+        
+        
+                            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"" message:@"没有搜索结果!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [self.view addSubview:alert];
+                            [alert show];
+                        }
+        
+        [self.MyTabView reloadData];
+        // _switchArea=NO;
+        [_AreaTabView removeFromSuperview];
+        [_Blueview removeFromSuperview];
+        [_streetTabView removeFromSuperview];
+        
+        
+    } failure:^ void(AFHTTPRequestOperation * operation, NSError * error) {
+        NSLog(@"%@", error);
+    }];
+    
 
 
+}
 
 @end
